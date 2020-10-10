@@ -8,10 +8,12 @@ const int L = 10005;
 int n;
 int a[L], c[L];
 
+// 取i的 2的最大次方 的因子
 int lowbit(int i){
     return i&(-i);
 }
 
+// 更新
 void update(int i, int k){
     while(i <= n){
         c[i] += k;
@@ -19,6 +21,7 @@ void update(int i, int k){
     }
 }
 
+// 求和
 int getsum(int i){
     int res = 0;
     while(i > 0){
