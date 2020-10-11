@@ -6,7 +6,8 @@ using namespace std;
 const int L = 10005;
 
 int n;
-int a[L], c[L];
+int a[L];
+long long c[L];
 
 // 取i的 2的最大次方 的因子
 int lowbit(int i){
@@ -22,8 +23,8 @@ void update(int i, int k){
 }
 
 // 求和
-int getsum(int i){
-    int res = 0;
+long long getsum(int i){
+    long long res = 0;
     while(i > 0){
         res += c[i];
         i -= lowbit(i);
@@ -32,7 +33,7 @@ int getsum(int i){
 }
 
 // 单点更新，区间查询
-int bit1(){
+long long bit1(){
     cin >> n;
     fill(a, a+L, 0); fill(c, c+L, 0);
     for(int i = 1; i <= n; i++){
@@ -44,7 +45,7 @@ int bit1(){
     // 查询[x,y]区间和
     int x, y;
     cin >> x >> y;
-    int sum = getsum(y) - getsum(x-1);
+    long long sum = getsum(y) - getsum(x-1);
     return sum;
 }
 
@@ -52,7 +53,7 @@ int bit1(){
 // A[i] = Σj=(1=>i) D[j]
 // 即D[j] = A[j] - A[j-1]
 // 不再直接对A建树，转而对D建树
-int bit2(){
+long long bit2(){
     cin >> n;
     fill(a, a+L, 0); fill(c, c+L, 0);
     for(int i = 1; i <= n; i++){
@@ -66,11 +67,13 @@ int bit2(){
     cin >> x >> y >> k;
     update(x, k);
     update(y+1, -k);
+    for(int i = x; i <= y; ++i)
+        a[i] += k;
 
     // 查询a[index]
     int index;
     cin >> index;
-    int sum = getsum(index);
+    long long sum = getsum(index);
 
     return sum;
 }
@@ -82,7 +85,8 @@ int bit2(){
 // ∑i=(1=>n) A[i] = n * ∑i=(1=>n) D[i] - ∑i=(1=>n) (D[i]*(i-1))
 // 所以对 D[i] 和 D[i]*(i-1) 建树
 int m;
-int A[L], D1[L], D2[L];
+int A[L];
+long long D1[L], D2[L];
 
 void update2(int i, int k){
     int j = i;
@@ -93,8 +97,9 @@ void update2(int i, int k){
     }
 }
 
-int getsum2(int i){
-    int res = 0, j = i;
+long long getsum2(int i){
+    long long res = 0;
+    int j = i;
     while(i > 0){
         res += j * D1[i] - D2[i];
         i -= lowbit(i);
@@ -102,7 +107,7 @@ int getsum2(int i){
     return res;
 }
 
-int bit3(){
+long long bit3(){
     cin >> m;
     fill(A, A+L, 0); fill(D1, D1+L, 0); fill(D2, D2+L, 0);
     for(int i = 1; i <= m; i++){
@@ -116,11 +121,13 @@ int bit3(){
     cin >> x >> y >> k;
     update2(x, k);
     update2(y+1, -k);
+    for(int i = x; i <= y; ++i)
+        a[i] += k;
 
     // 求[xx,yy]区间和
     int xx, yy;
     cin >> xx >> yy;
-    int sum = getsum2(yy) - getsum2(xx - 1);
+    long long sum = getsum2(yy) - getsum2(xx - 1);
 
     return sum;
 }
