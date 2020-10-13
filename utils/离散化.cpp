@@ -31,5 +31,12 @@ int main()
 
     show(a, n);
 
+    /* 对vector进行离散化 */
+    // vector<int> a, b;   // b是a的一个副本
+    // sort(b.begin(), b.end());
+    // b.erase(unique(b.begin(), b.end()), b.end());
+    // for (int i = 0; i < n; ++i)
+    //     a[i] = lower_bound(b.begin(), b.end(), a[i]) - b.begin();
+
     return 0;
 }
