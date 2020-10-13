@@ -24,9 +24,9 @@ int main()
         t[i] = a[i];
     }
     sort(t+1, t+1+n);
-    int m = unique(t+1, t+1+n) - t - 1;
+    int m = unique(t+1, t+1+n) - t - 1;  // 去重
     for(int i=1; i<=n; i++){
-        a[i] = lower_bound(t+1, t+1+m, a[i]) - t;
+        a[i] = lower_bound(t+1, t+1+m, a[i]) - t;  // lower_bound在t中找第一个>=a[i]的下标
     }
 
     show(a, n);
