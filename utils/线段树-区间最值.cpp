@@ -20,7 +20,7 @@ void build(int l, int r, int k)
     if(l == r)
         t[k] = a[l];
     else{
-        int m = l + ((r - l) >> 1);
+        int m = (l + r) >> 1;
         build(l, m, k<<1);
         build(m+1, r, k<<1|1);
         Pushup(k);
@@ -33,7 +33,7 @@ void update_single(int p, int v, int l, int r, int k){
         a[k] += v;
         t[k] += v;
     }else{
-        int m = l + ((r - l) >> 1);
+        int m = (l + r) >> 1;
         if(p <= m)
             update_single(p, v, l, m, k<<1);
         else
@@ -48,7 +48,7 @@ int query(int L, int R, int l, int r, int k){
         return t[k];
     else{
         int res = -INF;
-        int m = l + ((r - l) >> 1);
+        int m = (l + r) >> 1;
         if(L <= m)
             res = max(res, query(L, R, l, m, k<<1));
         if(R > m)
@@ -78,7 +78,7 @@ void update_range(int L, int R, int v, int l, int r, int k){
         t[k] += v;      // 此区间每个值+v,则此区间的最大值也肯定是+v
     }else{
         Pushdown(k);    // 查询lazy标记，先更新子树
-        int m = l + ((r - l) >> 2);
+        int m = (l + r) >> 1;
         if(L <= m)
             update_range(L, R, v, l, m, k<<1);
         if(R > m)
@@ -94,7 +94,7 @@ int query_lazy(int L, int R, int l, int r, int k){
     }else{
         Pushdown(k);
         int res = -INF;
-        int m = l + ((r - l) >> 1);
+        int m = (l + r) >> 1;
         if(L <= m)
             res = max(res, query_lazy(L, R, l, m, k<<1));
         if(R > m)
