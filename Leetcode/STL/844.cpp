@@ -3,6 +3,8 @@
 using namespace std;
 
 // 双指针
+// 空间复杂度：O(1)
+// 时间复杂度：O(N+M)
 bool backspaceCompare_o1(string S, string T){
     int i = S.length() - 1, j = T.length() - 1;
     int skipS = 0, skipT = 0;
@@ -41,6 +43,8 @@ bool backspaceCompare_o1(string S, string T){
 }
 
 // 栈
+// 空间复杂度：O(N+M)
+// 时间复杂度：O(N+M)
 string build(string str) {
     string ret;
     for (char ch : str) {
