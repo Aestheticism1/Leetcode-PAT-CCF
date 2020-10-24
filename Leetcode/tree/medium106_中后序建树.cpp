@@ -4,6 +4,8 @@
 
 using namespace std;
 
+/* 掌握中后序建树，前中序建树与之相仿 */
+
 int post_index;
 unordered_map<int, int> inorder_idx;
 
