@@ -1,32 +1,53 @@
 #include <iostream>
+#include <string>
 #include <vector>
-#include <cstring>
+#include <regex>
+ 
 using namespace std;
-
-// 根据某个字符分割字符串
-void split(const string& s, vector<string>& tokens, char delim = ' ') {
-    tokens.clear();
-    auto string_find_first_not = [s, delim](size_t pos = 0) -> size_t {
-        for (size_t i = pos; i < s.size(); i++) {
-            if (s[i] != delim) return i;
-        } 
-        return string::npos;
-    };
-    size_t lastPos = string_find_first_not(0);
-    size_t pos = s.find(delim, lastPos);
-    while (lastPos != string::npos) {
-        tokens.emplace_back(s.substr(lastPos, pos - lastPos));
-        lastPos = string_find_first_not(pos);
-        pos = s.find(delim, lastPos);
-    }
+ 
+//没有使用C++11特性
+vector<string> testSplit(string srcStr, const string& delim)
+{
+	int nPos = 0;
+	vector<string> vec;
+	nPos = srcStr.find(delim.c_str());
+	while(-1 != nPos)
+	{
+		string temp = srcStr.substr(0, nPos);
+		vec.push_back(temp);
+		srcStr = srcStr.substr(nPos+1);
+		nPos = srcStr.find(delim.c_str());
+	}
+	vec.push_back(srcStr);
+	return vec;
 }
-
+ 
+//使用C++11特性
+vector<string> testSplit11(const string& in, const string& delim)
+{
+    vector<string> ret;
+    try
+    {
+        regex re{delim};
+        return vector<string>{
+                sregex_token_iterator(in.begin(), in.end(), re, -1),
+                sregex_token_iterator()
+           };      
+    }
+    catch(const std::exception& e)
+    {
+        cout<<"error:"<<e.what()<<std::endl;
+    }
+    return ret;
+}
+ 
 int main()
 {
-    string s = "asd aw2 a213 asfb";
-    vector<string> tokens;
-    split(s, tokens);
-    for(int i = 0; i < tokens.size(); i++)
-        cout << tokens[i] << endl;
-    return 0;
+	vector<string>ret = testSplit("how many credits?", " ");
+	for(int i = 0 ; i < ret.size(); ++i)
+	{
+		cout<<ret[i]<<endl;
+	}
+	
+	return 0;
 }
