@@ -42,6 +42,13 @@ void transfer(){
     // cout << y << endl;
 }
 
+// 加速C++ IO
+void accelerate_io(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    // IO
+}
+
 int main()
 {
     setprecision();
