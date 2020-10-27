@@ -12,6 +12,8 @@ using namespace std;
     2、哪个小就从哪个数组中排除 k/2-1 个数
     3、更新k值和offset
     4、三种边界情况：nums1越界、nums2越界、k==1
+
+PS: 还有一种从中位数定义出发的做法更优，可以达到O(log(min(m,n)))
 */
 
 int getKthElement(const vector<int>& nums1, const vector<int>& nums2, int k){
@@ -48,10 +50,33 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2){
         return (getKthElement(nums1, nums2, k) + getKthElement(nums1, nums2, k+1)) / 2.0;
 }
 
+// O(m+n)的做法，遍历(m+n)/2+1次
+double findMedianSortedArrays_subopt(vector<int>& nums1, vector<int>& nums2){
+    int m = nums1.size();
+    int n = nums2.size();
+    int len = m + n;
+    int left = -1, right = -1;
+    int aStart = 0, bStart = 0;
+    for (int i = 0; i <= len / 2; i++) {
+        left = right;
+        // 主要就是这里的判断语句值得学习，可细品
+        if (aStart < m && (bStart >= n || nums1[aStart] < nums2[bStart])) {
+            right = nums1[aStart++];
+        } else {
+            right = nums2[bStart++];
+        }
+    }
+    if ((len & 1) == 0)
+        return (left + right) / 2.0;
+    else
+        return right;
+}
+
 int main()
 {
     vector<int> nums1 = {1, 3, 4, 9};
     vector<int> nums2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     cout << findMedianSortedArrays(nums1, nums2) << endl;
+    // cout << findMedianSortedArrays_subopt(nums1, nums2) << endl;
     return 0;
 }
