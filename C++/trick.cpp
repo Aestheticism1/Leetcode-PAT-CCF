@@ -5,15 +5,16 @@
 #include <sstream>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-// 按照特定格式打印小数
+// 1、按照特定格式打印小数
 void setprecision(){
     float c = 2.5555566;
     cout << setiosflags(ios::fixed) << setprecision(2) << c <<endl;
 }
 
-// 字符、数字相互转换
+// 2、字符、数字相互转换
 void transfer(){
     stringstream ss;
     string a;
@@ -44,14 +45,14 @@ void transfer(){
     // cout << y << endl;
 }
 
-// 加速C++ IO
+// 3、加速C++ IO
 void accelerate_io(){
     ios::sync_with_stdio(false);
     cin.tie(0);
     // IO
 }
 
-// map转vector排序
+// 4、map转vector排序
 bool cmp(pair<int, int> a, pair<int, int> b){
     return a.first > b.first;
 }
@@ -65,11 +66,19 @@ void map_sort(){
     }
 }
 
+// 5、字符串大小写转换
+void transform_string(){
+    string s = "abc";
+    transform(s.begin(), s.end(), s.begin(), ::toupper);
+    cout << s << endl;
+}
+
 int main()
 {
     // setprecision();
     // transfer();
     // accelerate_io();
-    map_sort();
+    // map_sort();
+    transform_string();
     return 0;
 }
