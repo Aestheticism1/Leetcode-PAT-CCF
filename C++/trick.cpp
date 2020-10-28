@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <map>
 using namespace std;
 
 // 1、按照特定格式打印小数
@@ -73,12 +74,23 @@ void transform_string(){
     cout << s << endl;
 }
 
+// 6、set和map从大到小
+void change_to_desc(){
+    map<int, int, greater<int>> b;
+    b[1] = 20;
+    b[2] = 50;
+    b[3] = 100;
+    for(auto x: b)
+        cout << x.first << " " << x.second << endl;
+}
+
 int main()
 {
     // setprecision();
     // transfer();
     // accelerate_io();
     // map_sort();
-    transform_string();
+    // transform_string();
+    change_to_desc();
     return 0;
 }
