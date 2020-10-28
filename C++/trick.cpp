@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <string>
 #include <sstream>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
 // 按照特定格式打印小数
@@ -49,9 +51,25 @@ void accelerate_io(){
     // IO
 }
 
+// map转vector排序
+bool cmp(pair<int, int> a, pair<int, int> b){
+    return a.first > b.first;
+}
+void map_sort(){
+    unordered_map<int, int> m;
+    m[6] = 3, m[5] = 8, m[4] = 9;
+    vector<pair<int, int>> v(m.begin(), m.end());
+    sort(v.begin(), v.end(), cmp);
+    for(auto x: v){
+        cout << x.first << " " << x.second << endl;
+    }
+}
+
 int main()
 {
-    setprecision();
-    transfer();
+    // setprecision();
+    // transfer();
+    // accelerate_io();
+    map_sort();
     return 0;
 }
