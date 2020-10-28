@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <map>
+#include <fstream>
 using namespace std;
 
 // 1、按照特定格式打印小数
@@ -82,6 +83,14 @@ void change_to_desc(){
     b[3] = 100;
     for(auto x: b)
         cout << x.first << " " << x.second << endl;
+}
+
+// 7、从txt读取输入
+void cin_from_txt(){
+    string s;
+    ifstream in(".//ccf//data.txt");
+    getline(in, s);
+    in.close();
 }
 
 int main()
