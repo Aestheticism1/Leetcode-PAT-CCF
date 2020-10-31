@@ -3,15 +3,20 @@
 #include <iomanip>
 #include <string>
 #include <sstream>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <fstream>
 using namespace std;
 
-// 按照特定格式打印小数
+// 1、按照特定格式打印小数
 void setprecision(){
     float c = 2.5555566;
     cout << setiosflags(ios::fixed) << setprecision(2) << c <<endl;
 }
 
-// 字符、数字相互转换
+// 2、字符、数字相互转换
 void transfer(){
     stringstream ss;
     string a;
@@ -42,9 +47,59 @@ void transfer(){
     // cout << y << endl;
 }
 
+// 3、加速C++ IO
+void accelerate_io(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    // IO
+}
+
+// 4、map转vector排序
+bool cmp(pair<int, int> a, pair<int, int> b){
+    return a.first > b.first;
+}
+void map_sort(){
+    unordered_map<int, int> m;
+    m[6] = 3, m[5] = 8, m[4] = 9;
+    vector<pair<int, int>> v(m.begin(), m.end());
+    sort(v.begin(), v.end(), cmp);
+    for(auto x: v){
+        cout << x.first << " " << x.second << endl;
+    }
+}
+
+// 5、字符串大小写转换
+void transform_string(){
+    string s = "abc";
+    transform(s.begin(), s.end(), s.begin(), ::toupper);
+    cout << s << endl;
+}
+
+// 6、set和map从大到小
+void change_to_desc(){
+    map<int, int, greater<int>> b;
+    b[1] = 20;
+    b[2] = 50;
+    b[3] = 100;
+    for(auto x: b)
+        cout << x.first << " " << x.second << endl;
+}
+
+// 7、从txt读取输入
+void cin_from_txt(){
+    string s;
+    ifstream in(".//ccf//data.txt");
+    getline(in, s);
+    in.close();
+}
+
 int main()
 {
-    setprecision();
-    transfer();
+    // setprecision();
+    // transfer();
+    // accelerate_io();
+    // map_sort();
+    // transform_string();
+    change_to_desc();
     return 0;
 }
