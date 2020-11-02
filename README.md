@@ -5,5 +5,3 @@ Record some interesting questions and some useful codes.
 + 区间染色
 + 区间第K大
 + 矩形面积并
-
-+ test
