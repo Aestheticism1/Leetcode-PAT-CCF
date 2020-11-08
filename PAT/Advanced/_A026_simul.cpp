@@ -66,7 +66,7 @@ int main(){
                 ++table[index].serverPlayerNum;//递增该球台服务人数
             }else//查找不到空闲球台归入等待序列
                 waitPlayer.push_back(p.playerNum);
-        }else{//球台编号为0，表示该球台可以闲置
+        }else{//球台编号不为0，表示该球台可以闲置
             if(waitPlayer.empty())//如果等待序列为空
                 table[p.tableNum].occupy=false;//球台闲置
             else{//如果等待序列不空
