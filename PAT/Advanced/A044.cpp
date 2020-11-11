@@ -6,7 +6,8 @@ using namespace std;
 int others(){
     int N,M,maxSum=INT_MAX;
     scanf("%d%d",&N,&M);
-    int A[N+1]={0}; //表示给定的一组数中第1个数到第i个数的和,A[0]=0
+    int A[N+1]; //表示给定的一组数中第1个数到第i个数的和,A[0]=0
+    A[0]=0;
     vector<pair<int,int>>v;//存储加和最小且要大于M的一串数字的首尾位置
     for(int i=1;i<N+1;++i){
         scanf("%d",&A[i]);
