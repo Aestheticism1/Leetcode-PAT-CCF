@@ -12,7 +12,7 @@ int getSum(int x) {
     int sum = 0;
     for (int i = x; i > 0; i -= lowbit(i))
         sum += c[i];
-    return sum;
+    return sum; 
 }
 // 二分搜索
 int search(int left, int right, int k) {
