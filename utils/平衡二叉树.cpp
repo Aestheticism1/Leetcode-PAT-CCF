@@ -66,6 +66,61 @@ AVLTreeNode* insert(AVLTreeNode* &root, int data){
     return root;
 }
 
+AVLTreeNode* findMax(AVLTreeNode* root){
+    if(t == nullptr)
+        return nullptr;
+    if(t->right == nullptr)
+        return t;
+    return findMax(t->right);
+}
+
+AVLTreeNode* findMin(AVLTreeNode* root){
+    if(t == nullptr)
+        return nullptr;
+    if(t->left == nullptr)
+        return t;
+    return findMin(t->left);
+}
+
+bool delete(AVLTreeNode* &root, int x){
+    if(root == nullptr)
+        return false;
+    else if(root->val == x){
+        if(root->left != nullptr && root->right != nullptr){
+            if(getHeight(root->left) > getHeight(root->right)){
+                root->val = findMax(root->left)->val;
+                delete(root->left, root->val);
+            }else{
+                root->val = findMin(root->right)->val;
+                delete(root->right, root->val);
+            }
+        }else{
+            AVLTreeNode *old = root;
+            root = root->left != nullptr ? root->left : root->right;
+            delete old;
+        }
+    }else if(x < root->val){
+        delete(root->left, x);
+        if(getHeight(root->right) - getHeight(root->left) == 2){
+            if(getHeight(root->right->left) > getHeight(root->right->right))
+                root = RLRotation(root);
+            else
+                root = RRRotation(root);
+        }else
+            root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
+    }else{
+        delete(root->right, x);
+        if(getHeight(root->left) - getHeight(root->right) == 2){
+            if(getHeight(root->left->right) > getHeight(root->left->left))
+                root = LRRotation(root);
+            else
+                root = LLRotation(root);
+        }else
+            root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
+    }
+    return true;
+}
+
 int main()
 {
     
