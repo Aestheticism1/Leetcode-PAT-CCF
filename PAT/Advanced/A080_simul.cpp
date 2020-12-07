@@ -16,7 +16,7 @@ bool cmp(Stu& a, Stu& b){
 
 int main()
 {
-    int N, M, K;
+    int N, M, K; 
     cin >> N >> M >> K;
     int quota[M];
     int lastRank[M];
