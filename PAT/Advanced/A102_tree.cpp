@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 struct Node{//结点类，没有数据域
-    int left=-1,right=-1;
+    int left=-1,right=-1; 
 };
 Node tree[10];
 void inOrder(int root,bool&space){//中根遍历，space指示输出数字之前是否需要输出空格
