@@ -93,6 +93,15 @@ void cin_from_txt(){
     in.close();
 }
 
+// 8、unique_ptr  std::move()
+void unique_pointer(){
+    unique_ptr<string> ps1, ps2;
+    ps1 = unique_ptr<string>(new string("hello"));
+    ps2 = move(ps1);
+    ps1 = unique_ptr<string>(new string("world"));
+    cout << *ps2 << " " << *ps1 << endl;
+}
+
 int main()
 {
     // setprecision();
@@ -100,6 +109,7 @@ int main()
     // accelerate_io();
     // map_sort();
     // transform_string();
-    change_to_desc();
+    // change_to_desc();
+    unique_pointer();
     return 0;
 }
