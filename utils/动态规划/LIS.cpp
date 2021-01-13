@@ -1,7 +1,7 @@
 // 复杂度O(n^2)
 // dp[i]表示以nums[i]结尾的最长升序子序列长度
 // 状态转移方程 dp[i] = max(dp[i], dp[j] + 1)
-class Solution {
+class Solution { 
 public:
     int lengthOfLIS(vector<int>& nums) {
         int n = (int)nums.size();
