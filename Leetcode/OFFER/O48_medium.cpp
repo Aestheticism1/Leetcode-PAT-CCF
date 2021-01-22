@@ -1,6 +1,6 @@
 // 最长不含重复字符的子字符串
 // 滑动窗口
-class Solution {
+class Solution { 
 public:
     int lengthOfLongestSubstring(string s) {
         // unordered_map<char, int> mp;
