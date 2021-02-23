@@ -40,14 +40,51 @@ vector<string> testSplit11(const string& in, const string& delim)
     }
     return ret;
 }
+
+template<class S, class T>
+std::string join_str(std::vector<T>& elems, S& delim) {
+    std::stringstream ss;
+
+    typename std::vector<T>::iterator e = elems.begin();
+
+    ss << *e++;
+
+    for (; e != elems.end(); ++e) {
+        ss << delim << *e;
+
+    }
+
+    return ss.str();
+
+}
+
+std::vector<std::string> split_str(const std::string& s, char delimiter){
+    std::vector<std::string> tokens;
+
+    std::string token;
+
+    std::istringstream tokenStream(s);
+
+    while ( std::getline(tokenStream, token, delimiter) )
+
+        tokens.push_back(token);
+
+    return tokens;
+
+}
  
 int main()
 {
-	vector<string>ret = testSplit("how many credits?", " ");
-	for(int i = 0 ; i < ret.size(); ++i)
-	{
-		cout<<ret[i]<<endl;
-	}
+	// vector<string>ret = testSplit("how many credits?", " ");
+	// for(int i = 0 ; i < ret.size(); ++i)
+	// {
+	// 	cout<<ret[i]<<endl;
+	// }
+
+	vector< string >vv = { "a", "b", "c" };
+    std::string outStr = join_str( vv, "|" );
+	cout << outStr << endl;
+    vector< string > vv2 = split_str(  outStr,  '|' );
 	
 	return 0;
 }
