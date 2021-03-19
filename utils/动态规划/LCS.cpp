@@ -1,7 +1,7 @@
 // 最长公共子序列
 // dp[i][j]表示s1到第i个字符和s2到第j个字符的LCS长度
 // 状态转移方程：
-// s1[i] == s2[j], dp[i][j] = dp[i-1][j-1] + 105
+// s1[i] == s2[j], dp[i][j] = dp[i-1][j-1] + 1
 // s1[i] != s2[j], dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 class Solution {
 public:
